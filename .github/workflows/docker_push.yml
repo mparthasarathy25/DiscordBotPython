@@ -33,6 +33,7 @@ jobs:
     
     - name: Test with pytest
       run: |
+        pip3 install pytest
         pytest tests/test.py
 # Build and push the Docker image
   push_to_registry:
