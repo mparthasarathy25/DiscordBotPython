@@ -38,19 +38,15 @@ jobs:
 # Build and push the Docker image
   push_to_registry:
     name: Build and push Docker image to Docker Hub
-    # ...but only when a `release` is `published` (combined with `on`)
-    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'release'  
+    runs-on: ubuntu-latest  
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
       
-      - name: Build and push image to the Docker Hub
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: ${{ secrets.DOCKERHUB_REPOSITORY }}
-          tag_with_ref: true
-          tag_with_sha: true
-          tags: latest
+      - name: Build Docker image
+        run: |
+        docker login sigma7.azurecr.io -u sigma7 -p ${{ secrets.AZURE_PASSWORD }}
+        docker build --tag discord_bot .
+        docker tag discord_bot sigma7.azurecr.io/sigma7test_bot
+        docker push sigma7.azurecr.io/sigma7test_bot
