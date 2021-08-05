@@ -46,7 +46,7 @@ jobs:
       
       - name: Build Docker image
         run: |
-        docker login sigma7.azurecr.io -u sigma7 -p ${{ secrets.AZURE_PASSWORD }}
-        docker build --tag discord_bot .
-        docker tag discord_bot sigma7.azurecr.io/sigma7test_bot
-        docker push sigma7.azurecr.io/sigma7test_bot
+          docker login sigma7.azurecr.io -u sigma7 -p ${{ secrets.AZURE_PASSWORD }}
+          docker build --tag discord_bot .
+          docker tag discord_bot sigma7.azurecr.io/sigma7test_bot
+          docker push sigma7.azurecr.io/sigma7test_bot
