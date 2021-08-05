@@ -14,7 +14,7 @@ jobs:
   # Run code tests before building the image, to ensure it is good to go
   build:
     name: Run code tests
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8]
@@ -40,7 +40,7 @@ jobs:
     name: Build and push Docker image to Docker Hub
     # ...but only when a `release` is `published` (combined with `on`)
     if: github.event_name == 'release'
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
